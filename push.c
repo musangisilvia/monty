@@ -80,7 +80,7 @@ void pop(stack_t **stack, unsigned int line_number)
   */
 void swap(stack_t **stack, unsigned int line_number)
 {
-	int temp;
+	int temp = 0;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
@@ -90,4 +90,38 @@ void swap(stack_t **stack, unsigned int line_number)
 	temp = (*stack)->n;
 	(*stack)->n = (*stack)->next->n;
 	(*stack)->next->n = temp;
+}
+
+/**
+  * add - adds the top two elements of the stack.
+  * @stack: double pointer to stack;
+  * @line_number: number of lines.
+  *
+  * Return: void.
+  */
+void add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+	int sum = 0;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%d: can't add stack too short\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	sum = (*stack)->n + (*stack)->next->n;
+	temp = (*stack)->next;
+	(*stack)->n = sum;
+
+	if ((*stack)->next->next != NULL)
+	{
+		temp->next->prev = (*stack)->next;
+		(*stack)->n = sum;
+		free(temp);
+	}
+	else
+	{
+		(*stack)->next = NULL;
+		free(temp);
+	}
 }
