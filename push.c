@@ -111,19 +111,10 @@ void add(stack_t **stack, unsigned int line_number)
 	}
 	sum = (*stack)->n + (*stack)->next->n;
 	temp = (*stack)->next;
-	(*stack)->n = sum;
-
-	if ((*stack)->next->next != NULL)
-	{
-		temp->next->prev = (*stack)->next;
-		(*stack)->n = sum;
-		free(temp);
-	}
-	else
-	{
-		(*stack)->next = NULL;
-		free(temp);
-	}
+	(*stack)->next->prev = NULL;
+	*stack = (*stack)->next;
+	(*stack)->n = sum
+	free(temp);
 }
 
 /**
