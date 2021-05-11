@@ -2,7 +2,7 @@
 
 /**
   * push - push data to top of stack.
-  * @stack: stack where data is pushed.
+  * @stack: double pointer to stack.
   * @line_number: number of lines.
   *
   * Return: void.
@@ -36,6 +36,37 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		free(new_node);
 		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+  * pop - removes the element at the top of the stack
+  * @stack: double pointer to stack.
+  * @line_number: number of lines.
+  *
+  * Return: void.
+  */
+void pop(stack_t **stack, unsigned int line_number)
+{
+	stack_t *temp;
+
+	if (*stack != NULL && (*stack)->next == NULL)
+	{
+		temp = *stack;
+		free(temp);
+		*stack = NULL;
+	}
+	else if (*stack != NULL && (*stack)->next != NULL)
+	{
+		temp = *stack;
+		(*stack)->next->prev = NULL;
+		*stack = (*stack)->next;
+		free(temp);
+	}
+	else
+	{
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 }
