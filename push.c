@@ -39,21 +39,3 @@ void push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 }
-
-/**
-  * pint - prints the value at the top of the stack.
-  * @stack: double pointer to stack.
-  * @line_number: number of lines.
-  *
-  * Return: void.
-  */
-void pint(stack_t **stack, unsigned int line_number)
-{
-	if (*stack != NULL)
-		printf("%d\n", (*stack)->n);
-	else
-	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-}
