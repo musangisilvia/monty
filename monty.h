@@ -1,11 +1,13 @@
-#ifndef MONTY_H
-#define MONTY_H
+#ifndef TMONTY_H
+#define TMONTY_H
 
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <unistd.h>
 #include <string.h>
+#include <ctype.h>
 
+/* data structures */
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -17,9 +19,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 /**
@@ -32,12 +34,19 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/*global variable*/
+extern char *argument;
+char *argument;
 
-char **break_lines(char line[]);
-void *getcmd(char *opc, char *arg, int line_number);
-void push_to_stack(stack_t **head, unsigned int line_number);
-#endif /* MONTY_H */
+/*function prototypes*/
+char **break_line(char *line);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void (*get_opcode(char *))(stack_t **stack, unsigned int line_number);
+void free_dlist(stack_t *head);
+#endif /* TMONTY_H */
