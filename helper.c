@@ -24,6 +24,7 @@ char **break_line(char *line)
 		token = strtok(NULL, " \t\n ");
 		i++;
 	}
+	tokens[i] = NULL;
 	return (tokens);
 }
 

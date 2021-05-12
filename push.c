@@ -11,14 +11,7 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	if (isdigit(argument[0]) == 0 || argument == NULL)
-	{
-		free_dlist(*stack);
-		free(new_node);
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-		exit(EXIT_FAILURE);
-	}
-
+	(void)line_number;
 	if (new_node != NULL)
 	{
 		new_node->n = atoi(argument);
@@ -38,8 +31,7 @@ void push(stack_t **stack, unsigned int line_number)
 	{
 		free_dlist(*stack);
 		free(new_node);
-		fprintf(stderr, "Error: malloc failed");
-		exit(EXIT_FAILURE);
+		err(4);
 	}
 }
 

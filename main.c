@@ -12,8 +12,8 @@ int main(int argc, char **argv)
 	FILE *fptr;
 	size_t size = 0;
 	stack_t *stack = NULL;
-	unsigned int line_count = 1;
-	char **tokens = NULL, *line = NULL;
+	unsigned int line_c = 1;
+	char **tk = NULL, *line = NULL;
 	void (*op_func)(stack_t **stack, unsigned int line_number);
 
 	if (argc != 2)
@@ -25,24 +25,29 @@ int main(int argc, char **argv)
 	{
 		if (!strcmp(line, "\n"))
 		{
-			line_count++;
+			line_c++;
 			continue;
 		}
-		tokens = break_line(line), op_func = get_opcode(tokens[0]);
+		tk = break_line(line), op_func = get_opcode(tk[0]);
 		if (op_func == NULL)
 		{
-			free(line), free(tokens), fclose(fptr), free_dlist(stack);
-			err(3, line_count, tokens[0]);
+			free(line), free(tk), fclose(fptr), free_dlist(stack);
+			err(3, line_c, tk[0]);
 		}
-		if (strcmp(tokens[0], "push") == 0 && tokens[1])
-			argument = tokens[1];
-		else if (!strcmp(tokens[0], "push") && tokens[1] == NULL)
+		if (strcmp(tk[0], "push") == 0 && tk[1])
 		{
-			free(line), free(tokens), fclose(fptr), free_dlist(stack);
-			err(5, line_count);
+			if (!atoi(tk[1]))
+			{
+				free(line), free(tk), fclose(fptr), free_dlist(stack);
+				err(5, line_c);
+			}
+			argument = tk[1];
 		}
-		op_func(&stack, line_count), line_count++, free(tokens);
+		if (!strcmp(tk[0], "push") && tk[1] == NULL)
+			free(line), free(tk), fclose(fptr), free_dlist(stack), err(5, line_c);
+		op_func(&stack, line_c), line_c++, free(tk);
 	}
 	fclose(fptr), free(line), free_dlist(stack);
 	return (0);
 }
+
