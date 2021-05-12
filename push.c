@@ -101,7 +101,6 @@ void swap(stack_t **stack, unsigned int line_number)
   */
 void add(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
 	int sum = 0;
 
 	if (*stack == NULL || (*stack)->next == NULL)
@@ -110,11 +109,9 @@ void add(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	sum = (*stack)->n + (*stack)->next->n;
-	temp = (*stack)->next;
 	(*stack)->next->prev = NULL;
 	*stack = (*stack)->next;
-	(*stack)->n = sum
-	free(temp);
+	(*stack)->n = sum;
 }
 
 /**
@@ -126,7 +123,6 @@ void add(stack_t **stack, unsigned int line_number)
   */
 void sub(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
 	int diff = 0;
 
 	if (*stack == NULL || (*stack)->next == NULL)
@@ -135,9 +131,7 @@ void sub(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	diff = (*stack)->next->n - (*stack)->n;
-	temp = *stack;
 	(*stack)->next->prev = NULL;
 	*stack = (*stack)->next;
 	(*stack)->n = diff;
-	free(temp);
 }
