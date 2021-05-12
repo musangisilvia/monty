@@ -37,9 +37,9 @@ int main(int argc, char **argv)
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_count, tokens[0]);
 			exit(EXIT_FAILURE);
 		}
-		if (tokens[1])
+		if (strcmp(tokens[0], "push") == 0 && tokens[1])
 			argument = tokens[1];
-		else
+		else if (!strcmp(tokens[0], "push") && !tokens[1])
 			err(&stack, line_count);
 		op_func(&stack, line_count);
 
