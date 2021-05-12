@@ -18,6 +18,7 @@ void (*get_opcode(char *token))(stack_t **head, unsigned int line_number)
 		{"sub", sub},
 		{"div", div_},
 		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 	int i = 0;
