@@ -52,6 +52,7 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
+void err(stack_t **stack, unsigned int line_number);
 void (*get_opcode(char *))(stack_t **stack, unsigned int line_number);
 void free_dlist(stack_t *head);
 #endif /* TMONTY_H */

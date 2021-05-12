@@ -11,7 +11,7 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = malloc(sizeof(stack_t));
 
-	if (isdigit(argument[0]) == 0)
+	if (isdigit(argument[0]) == 0 || argument == NULL)
 	{
 		free_dlist(*stack);
 		free(new_node);

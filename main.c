@@ -31,15 +31,16 @@ int main(int argc, char **argv)
 	{
 		if (line[size - 1] == '\n')
 			line[size - 1] = '\0';
-		tokens = break_line(line);
-		op_func = get_opcode(tokens[0]);
+		tokens = break_line(line), op_func = get_opcode(tokens[0]);
 		if (op_func == NULL)
 		{
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_count, tokens[0]);
 			exit(EXIT_FAILURE);
 		}
-		if (tokens[1] != NULL)
+		if (tokens[1])
 			argument = tokens[1];
+		else
+			err(&stack, line_count);
 		op_func(&stack, line_count);
 
 		line_count++;
@@ -48,4 +49,18 @@ int main(int argc, char **argv)
 	fclose(fptr);
 	free(line), free_dlist(stack);
 	return (0);
+}
+
+/**
+  * err - print integer fault.
+  * @stack: double pointer to stack;
+  * @line_number: number of lines.
+  *
+  * Return: void.
+  */
+void err(stack_t **stack, unsigned int line_number)
+{
+	free_dlist(*stack);
+	fprintf(stderr, "L%d: usage: push integer\n", line_number);
+	exit(EXIT_FAILURE);
 }
