@@ -29,8 +29,11 @@ int main(int argc, char **argv)
 	}
 	while (getline(&line, &size, fptr) != -1)
 	{
-		if (line[size - 1] == '\n')
-			line[size - 1] = '\0';
+		if (!strcmp(line, "\n"))
+		{
+			line_count++;
+			continue;
+		}
 		tokens = break_line(line), op_func = get_opcode(tokens[0]);
 		if (op_func == NULL)
 		{
@@ -41,10 +44,7 @@ int main(int argc, char **argv)
 			argument = tokens[1];
 		else if (!strcmp(tokens[0], "push") && !tokens[1])
 			err(&stack, line_count);
-		op_func(&stack, line_count);
-
-		line_count++;
-		free(tokens);
+		op_func(&stack, line_count), line_count++, free(tokens);
 	}
 	fclose(fptr);
 	free(line), free_dlist(stack);
