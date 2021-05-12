@@ -7,9 +7,9 @@ Monty 0.98 is a scripting language that is first compiled into Monty byte codes.
 It relies on a unique stack with specific instructions to manipulate it.
 By convention, the files containing Monty bytecodes have the *.m* extension. There is no more than one instruction per line  and there can be any number of spaces before or after the opcode and its argument.
 
-Monty byte code files can contain blank lines (empty or made of spaces only and any additional text after the opcode or its required argument is not taken into account:
+## Monty byte code file
 
-### Monty byte code file
+Monty byte code files can contain blank lines (empty or made of spaces only and any additional text after the opcode or its required argument is not taken into account:
 
 ```
 musangi@ubuntu:~/monty$ cat -e testfiles/001.m
@@ -31,7 +31,7 @@ pall This is the end of our program. Monty is awesome!$
 musangi@ubuntu:~/monty$
 ```
 
-### The monty program
+## The Monty program
 
 - Usage: *monty file*
 	* where *file* is the path to the file containing Monty byte code
@@ -48,16 +48,31 @@ musangi@ubuntu:~/monty$
 - If the program can't malloc anymore, the error message *Error: malloc failed* is printed, followed by a new line, and exit with status *EXIT_FAILURE*.
 - Only *malloc* and *free* are used to manage heap memory.
 
-#### FUNCTIONS
+### OPCODES AND FUNCTIONS
 
 | OPCODE  | FUNCTION				  | Usage |
 | :-----  | :------------------------------------ | :---  |
-| *push*  | pushes an element to the stack.	  | push  |
+| *push*  | pushes an element to the stack.	  | push <int> |
 | *pall*  | prints all the values on the stack starting from the top of the stack | pall |
 | *pint*  | prints the value at the top of the stack, followed by a new line. | pint |
 | *pop*   | removes the top element of the stack. | pop |
 | *swap*  | swaps the top two elements of the stack. | swap |
 | *add*   | adds the top two elements of the stack. | add |
 | *nop*   | does nothing | nop |
-| *sub*   | subtracts the top element of the stack from the second top element of the stack|
+| *sub*   | subtracts the top element of the stack from the second top element of the stack.| sub |
+
+#### OPCODE ERRORS AND EXIT CODES
+
+| OPCODE  | ERROR		| CAUSE OF ERROR	| EXIT CODE  |
+| :---    | :---		| :---			| :---	     |
+| push    | L<line_number>: usage: push integer | Argument passed is not an integer or was not passed | EXIT_FAILURE |
+| pall    | nothing is printed | empty stack | none |
+| pint    | L<line_number>: can't pint, stack empty | empty  stack | EXIT_FAILURE |
+| pop     | L<line_number>: can't pop an empty stack | empty stack | EXIT_FAILURE |
+| swap    | L<line_number>: can't swap, stack too short | stack has less than 2 elements | EXIT_FAILURE |
+| add     | L<line_number>: can't add, stack too short | stack has less than 2 elements | EXIT_FAILURE |
+| sub     | L<line_number>: can't sub, stack too short | stack has less than 2 elements | EXIT_FAILURE |
+
+
+
 
