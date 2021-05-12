@@ -26,6 +26,5 @@ void (*get_opcode(char *token))(stack_t **head, unsigned int line_number)
 			return (opc[i].f);
 		i++;
 	}
-	free(token);
 	return (NULL);
 }

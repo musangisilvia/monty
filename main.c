@@ -30,10 +30,7 @@ int main(int argc, char **argv)
 		}
 		tk = break_line(line), op_func = get_opcode(tk[0]);
 		if (op_func == NULL)
-		{
-			free(line), free(tk), fclose(fptr), free_dlist(stack);
-			err(3, line_c, tk[0]);
-		}
+			free_dlist(stack), err(3, line_c, tk[0], tk, line);
 		if (strcmp(tk[0], "push") == 0 && tk[1])
 		{
 			if (!atoi(tk[1]))

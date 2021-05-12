@@ -25,6 +25,8 @@ void err(int code, ...)
 			line_num = va_arg(ag, int);
 			opc = va_arg(ag, char *);
 			fprintf(stderr, "L%d: unknown instruction %s\n", line_num, opc);
+			free(va_arg(ag, char **));
+			free(va_arg(ag, char *));
 			break;
 		case 4:
 			fprintf(stderr, "Error: malloc failed\n");
