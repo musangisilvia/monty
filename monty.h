@@ -1,5 +1,5 @@
-#ifndef TMONTY_H
-#define TMONTY_H
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -40,8 +40,8 @@ typedef struct instruction_s
 } instruction_t;
 
 /*global variable*/
-extern char *argument;
-char *argument;
+extern int argument;
+int argument;
 
 /*function prototypes*/
 char **break_line(char *line);
@@ -53,7 +53,9 @@ void swap(stack_t **stack, unsigned int line_number);
 void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
+void div_(stack_t **stack, unsigned int line_number);
+int toInt(char *s);
 void err(int code, ...);
 void (*get_opcode(char *))(stack_t **stack, unsigned int line_number);
 void free_dlist(stack_t *head);
-#endif /* TMONTY_H */
+#endif /* MONTY_H */
