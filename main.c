@@ -33,18 +33,18 @@ int main(int argc, char **argv)
 			free_dlist(stack), err(3, line_c, tk[0], tk, line);
 		if (strcmp(tk[0], "push") == 0 && tk[1])
 		{
-			if (!atoi(tk[1]))
+			if (toInt(tk[1]) >= 0)
+				argument = toInt(tk[1]);
+			else
 			{
 				free(line), free(tk), fclose(fptr), free_dlist(stack);
 				err(5, line_c);
 			}
-			argument = tk[1];
 		}
-		if (!strcmp(tk[0], "push") && tk[1] == NULL)
+		if (!strcmp(tk[0], "push") && !tk[1])
 			free(line), free(tk), fclose(fptr), free_dlist(stack), err(5, line_c);
 		op_func(&stack, line_c), line_c++, free(tk);
 	}
 	fclose(fptr), free(line), free_dlist(stack);
 	return (0);
 }
-

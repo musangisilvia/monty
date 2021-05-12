@@ -14,7 +14,7 @@ void push(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 	if (new_node != NULL)
 	{
-		new_node->n = atoi(argument);
+		new_node->n = argument;
 		new_node->prev = NULL;
 		new_node->next = NULL;
 
