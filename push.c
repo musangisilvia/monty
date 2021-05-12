@@ -13,6 +13,8 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (isdigit(argument[0]) == 0)
 	{
+		free_dlist(*stack);
+		free(new_node);
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -34,6 +36,7 @@ void push(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
+		free_dlist(*stack);
 		free(new_node);
 		fprintf(stderr, "Error: malloc failed");
 		exit(EXIT_FAILURE);
@@ -66,6 +69,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	}
 	else
 	{
+		free_dlist(*stack);
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -84,6 +88,7 @@ void swap(stack_t **stack, unsigned int line_number)
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
+		free_dlist(*stack);
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
@@ -101,17 +106,18 @@ void swap(stack_t **stack, unsigned int line_number)
   */
 void add(stack_t **stack, unsigned int line_number)
 {
-	int sum = 0;
+	stack_t *temp;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
+		free_dlist(*stack);
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	sum = (*stack)->n + (*stack)->next->n;
-	(*stack)->next->prev = NULL;
+	temp = *stack;
 	*stack = (*stack)->next;
-	(*stack)->n = sum;
+	(*stack)->n = temp->n + temp->next->n;
+	free(temp);
 }
 
 /**
@@ -123,15 +129,16 @@ void add(stack_t **stack, unsigned int line_number)
   */
 void sub(stack_t **stack, unsigned int line_number)
 {
-	int diff = 0;
+	stack_t *temp;
 
 	if (*stack == NULL || (*stack)->next == NULL)
 	{
+		free_dlist(*stack);
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	diff = (*stack)->next->n - (*stack)->n;
-	(*stack)->next->prev = NULL;
+	temp = *stack;
 	*stack = (*stack)->next;
-	(*stack)->n = diff;
+	(*stack)->n = temp->next->n - temp->n;
+	free(temp);
 }

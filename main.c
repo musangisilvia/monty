@@ -40,7 +40,6 @@ int main(int argc, char **argv)
 		}
 		if (tokens[1] != NULL)
 			argument = tokens[1];
-
 		op_func(&stack, line_count);
 
 		line_count++;
