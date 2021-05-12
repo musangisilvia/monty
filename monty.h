@@ -44,7 +44,8 @@ extern int argument;
 int argument;
 
 /*function prototypes*/
-char **break_line(char *line);
+
+/*opcode functions*/
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void pint(stack_t **stack, unsigned int line_number);
@@ -54,8 +55,12 @@ void add(stack_t **stack, unsigned int line_number);
 void nop(stack_t **stack, unsigned int line_number);
 void sub(stack_t **stack, unsigned int line_number);
 void div_(stack_t **stack, unsigned int line_number);
+void mul(stack_t **stack, unsigned int line_number);
+void (*get_opcode(char *))(stack_t **stack, unsigned int line_number);
+
+/*helper functions*/
+char **break_line(char *line);
 int toInt(char *s);
 void err(int code, ...);
-void (*get_opcode(char *))(stack_t **stack, unsigned int line_number);
 void free_dlist(stack_t *head);
 #endif /* MONTY_H */
