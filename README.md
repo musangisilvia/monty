@@ -48,7 +48,7 @@ musangi@ubuntu:~/monty$
 - If the program can't malloc anymore, the error message *Error: malloc failed* is printed, followed by a new line, and exit with status *EXIT_FAILURE*.
 - Only *malloc* and *free* are used to manage heap memory.
 
-### OPCODES AND FUNCTIONS
+## OPCODES AND FUNCTIONS
 
 | OPCODE  | FUNCTION				  | Usage |
 | :-----  | :------------------------------------ | :---  |
@@ -65,10 +65,10 @@ musangi@ubuntu:~/monty$
 | *mod* | Computes the rest of the division of the second top element of the stack by the top element of the stack.<ul><li>The result is stored in the second element.</li><li>The list is one element short.</li></ul> | mod |
 | *pchar* | Prints the char at the top of the stack. <ul><li>Integer is treated as the ascii value of the character to be printed.</li></ul> | pchar |
 | *pstr*  | Prints the string starting at the top of the stack. <ul><li>Integer is treated as the ascii value of the character to be printed.</li></ul> The string stops when either <ul><li>The stack is over.</li><li>The value of the element is 0.</li><li>The value of the element is not on the asci table.</li></ul> <p>If the stack is empty, a new line is printed.</p> | pstr |
-| *rotl*  | rotates the stack to the top.  | rotl |
-| *rotr*  | rotates the stack to the bottom. | rotr |
+| *rotl*  | Rotates the stack to the top. <ul><li>The top element of the stack becomes the last one.</li><li>The second top element of the stack becomes the first one.</li></ul> rotl never fails.  | rotl |
+| *rotr*  | Rotates the stack to the bottom. <ul><li>The last element of the stack becomes the top element of the stack</li></ul> rotr never fails. | rotr |
 
-#### OPCODE ERRORS AND EXIT CODES
+## OPCODE ERRORS AND EXIT CODES
 
 | OPCODE  | ERROR		| CAUSE OF ERROR	| EXIT CODE  |
 | :---    | :---		| :---			| :---	     |
@@ -84,6 +84,13 @@ musangi@ubuntu:~/monty$
 | mul     | L<line_number>: can't mul, stack too short | stack hass less than 2 elements | EXIT_FAILURE |
 | mod     | L<line_number>: can't mod, stack too short | stack hass less than 2 elements | EXIT_FAILURE |
 |         | L<line_number>: division by zero | top element of the stack is 0 | EXIT_FAILURE |
-| 
+| pchar   | L<line_number>: can't pchar, value out of range. | the integer value is not in the ascii table. | EXIT_FAILURE |
+|         | L<line_number>: can't pchar, stack empty. | stack is empty | EXIT_FAILURE |
+
+
+## AUTHOR 
+
+Name: Silvia Musangi
+Email: musangisilvia@gmail.com
 
 
