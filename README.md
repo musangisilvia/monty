@@ -52,20 +52,20 @@ musangi@ubuntu:~/monty$
 
 | OPCODE  | FUNCTION				  | Usage |
 | :-----  | :------------------------------------ | :---  |
-| *push*  | pushes an element to the stack.	  | push <int> |
-| *pall*  | prints all the values on the stack starting from the top of the stack | pall |
-| *pint*  | prints the value at the top of the stack, followed by a new line. | pint |
-| *pop*   | removes the top element of the stack. | pop |
-| *swap*  | swaps the top two elements of the stack. | swap |
-| *add*   | adds the top two elements of the stack. - The result is stored in the second element. - The list is one element short. | add |
-| *nop*   | does nothing | nop |
-| *sub*   | subtracts the top element of the stack from the second top element of the stack.| sub |
-| *div*     | divides the second top element of the stack by the top element of the stack | div |
-| *mul*     | multiplies the second top element of the stack with the top element of the stack. | mul |
-| *mod* | computes the rest of the division of the second top element of the stack by the top element of the stack | mod |
-| *pchar* | prints the char at the top of the stack. | pchar |
-| *pstr*  | prints the string starting at the top of the stack. | pstr |
-| *rotl*  | rotates the stack to the top. | rotl |
+| *push*  | Pushes an element to the stack.	  | push <int> |
+| *pall*  | Prints all the values on the stack starting from the top of the stack | pall |
+| *pint*  | Prints the value at the top of the stack, followed by a new line. | pint |
+| *pop*   | Removes the top element of the stack. | pop |
+| *swap*  | Swaps the top two elements of the stack. | swap |
+| *add*   | Adds the top two elements of the stack.<ul><li>The result is stored in the second element.</li><li>The list is one element short.</li></ul> | add |
+| *nop*   | Does nothing | nop |
+| *sub*   | Subtracts the top element of the stack from the second top element of the stack.<ul><li>The result is stored in the second element.</li><li>The list is one element short.</li></ul>| sub |
+| *div*     | Divides the second top element of the stack by the top element of the stack. .<ul><li>The result is stored in the second element.</li><li>The list is one element short.</li></ul> | div |
+| *mul*     | Multiplies the second top element of the stack with the top element of the stack.<ul><li>The result is stored in the second element.</li><li>The list is one element short.</li></ul> | mul |
+| *mod* | Computes the rest of the division of the second top element of the stack by the top element of the stack.<ul><li>The result is stored in the second element.</li><li>The list is one element short.</li></ul> | mod |
+| *pchar* | Prints the char at the top of the stack. <ul><li>Integer is treated as the ascii value of the character to be printed.</li></ul> | pchar |
+| *pstr*  | Prints the string starting at the top of the stack. <ul><li>Integer is treated as the ascii value of the character to be printed.</li></ul> The string stops when either <ul><li>The stack is over.</li><li>The value of the element is 0.</li><li>The value of the element is not on the asci table.</li></ul> <p>If the stack is empty, a new line is printed.</p> | pstr |
+| *rotl*  | rotates the stack to the top.  | rotl |
 | *rotr*  | rotates the stack to the bottom. | rotr |
 
 #### OPCODE ERRORS AND EXIT CODES
