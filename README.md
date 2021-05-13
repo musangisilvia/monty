@@ -57,9 +57,18 @@ musangi@ubuntu:~/monty$
 | *pint*  | prints the value at the top of the stack, followed by a new line. | pint |
 | *pop*   | removes the top element of the stack. | pop |
 | *swap*  | swaps the top two elements of the stack. | swap |
-| *add*   | adds the top two elements of the stack. | add |
+| *add*   | adds the top two elements of the stack. 
+		- The result is stored in the second element.
+		- The list is one element short. | add |
 | *nop*   | does nothing | nop |
 | *sub*   | subtracts the top element of the stack from the second top element of the stack.| sub |
+| *div*     | divides the second top element of the stack by the top element of the stack | div |
+| *mul*     | multiplies the second top element of the stack with the top element of the stack. | mul |
+| *mod* | computes the rest of the division of the second top element of the stack by the top element of the stack | mod |
+| *pchar* | prints the char at the top of the stack. | pchar |
+| *pstr*  | prints the string starting at the top of the stack. | pstr |
+| *rotl*  | rotates the stack to the top. | rotl |
+| *rotr*  | rotates the stack to the bottom. | rotr |
 
 #### OPCODE ERRORS AND EXIT CODES
 
@@ -72,7 +81,11 @@ musangi@ubuntu:~/monty$
 | swap    | L<line_number>: can't swap, stack too short | stack has less than 2 elements | EXIT_FAILURE |
 | add     | L<line_number>: can't add, stack too short | stack has less than 2 elements | EXIT_FAILURE |
 | sub     | L<line_number>: can't sub, stack too short | stack has less than 2 elements | EXIT_FAILURE |
-
-
+| div     | L<line_number>: can't div, stack too short | stack has less than 2 elements | EXIT_FAILURE |
+|         | L<line_number>: division by zero | top element of the stack is *0* | EXIT_FAILURE |
+| mul     | L<line_number>: can't mul, stack too short | stack hass less than 2 elements | EXIT_FAILURE |
+| mod     | L<line_number>: can't mod, stack too short | stack hass less than 2 elements | EXIT_FAILURE |
+|         | L<line_number>: division by zero | top element of the stack is 0 | EXIT_FAILURE |
+| 
 
 
