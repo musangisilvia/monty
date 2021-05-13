@@ -90,6 +90,6 @@ musangi@ubuntu:~/monty$
 
 ## AUTHOR 
 
-[Silvia Musangi](Email: musangisilvia@gmail.com)
+(Silvia Musangi)[musangisilvia@gmail.com]
 
 
