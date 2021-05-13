@@ -57,9 +57,7 @@ musangi@ubuntu:~/monty$
 | *pint*  | prints the value at the top of the stack, followed by a new line. | pint |
 | *pop*   | removes the top element of the stack. | pop |
 | *swap*  | swaps the top two elements of the stack. | swap |
-| *add*   | adds the top two elements of the stack. 
-		- The result is stored in the second element.
-		- The list is one element short. | add |
+| *add*   | adds the top two elements of the stack. - The result is stored in the second element. - The list is one element short. | add |
 | *nop*   | does nothing | nop |
 | *sub*   | subtracts the top element of the stack from the second top element of the stack.| sub |
 | *div*     | divides the second top element of the stack by the top element of the stack | div |
